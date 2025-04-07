@@ -37,7 +37,7 @@
             $page = $_GET['page'];
         }
         
-        include '_partials/' . $page . '.html';
+        include '_partials/' . $page . '.php';
         ?>
     </section>
     <!-- Footer-->
