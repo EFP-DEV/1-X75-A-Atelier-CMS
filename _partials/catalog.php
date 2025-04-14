@@ -8,6 +8,14 @@
         ?>
             <div class="col mb-5">
                 <div class="card h-100">
+                    <?php
+                    if ($product['sale_price'] !== null){
+                        ?>
+                        <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
+                        <?php
+                    }
+                    ?>
+                    
                     <!-- Product image-->
                     <img class="card-img-top" src="<?= $product['image']; ?>" alt="..." />
                     <!-- Product details-->
@@ -20,17 +28,27 @@
                             ?>
                                 <div class="d-flex justify-content-center small text-warning mb-2">
                                     <?php
-                                    for($i = 0; $i< $product['rating']; ++$i){
+                                    for ($i = 0; $i < $product['rating']; ++$i) {
                                         echo '<div class="bi-star-fill"></div>';
                                     }
                                     ?>
-                             
+
                                 </div>
                             <?php
                             }
+
+                            if ($product['price_min'] !== null && $product['price_max'] !== null) {
+                                printf('$%s - $%s', $product['price_min'], $product['price_max']);
+                            }
+                            // sale
+                            elseif ($product['sale_price'] !== null) {
+                                printf('<span class="text-muted text-decoration-line-through">$50.00</span>$25.00');
+                            } else {
+                                echo '$' . $product['price'];
+                            }
                             ?>
                             <!-- Product price-->
-                            $<?php echo $product['price_min']; ?> - $<?php echo $product['price_max']; ?>
+
                         </div>
                     </div>
                     <!-- Product actions-->
